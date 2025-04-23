@@ -1,0 +1,57 @@
+[Eth]
+NetworkId = 28058
+SyncMode = "snap"
+NoPruning = false
+NoPrefetch = false
+DatabaseCache = 512
+DatabaseFreezer = ""
+TrieCleanCache = 256
+TrieDirtyCache = 256
+TriesInMemory = 128
+TrieTimeout = 3600000000000
+EnablePreimageRecording = false
+
+[Eth.Miner]
+GasCeil = 40000000
+GasPrice = 10000000000
+Recommit = 10000000000
+DelayLeftOver = 50000000
+
+[[Eth.Miner.Mev.Builders]]
+Address = "0xa712bb5db820d4f118ba6c1698c14331d19707e5"
+
+[Eth.TxPool]
+Locals = []
+NoLocals = true
+Journal = "transactions.rlp"
+Rejournal = 3600000000000
+PriceLimit = 10000000000
+PriceBump = 10
+AccountSlots = 16
+GlobalSlots = 4096
+AccountQueue = 64
+GlobalQueue = 1024
+Lifetime = 10800000000000
+
+[Node]
+IPCPath = "geth.ipc"
+HTTPHost = "127.0.0.1"
+InsecureUnlockAllowed = true
+HTTPPort = 8545
+HTTPVirtualHosts = ["*"]
+HTTPModules = ["eth", "mev", "net", "web3", "txpool", "parlia", "debug", "admin", "miner"]
+WSHost = "127.0.0.1"
+WSPort = 8545
+
+[Node.P2P]
+MaxPeers = 1
+NoDiscovery = false
+StaticNodes = ["enode://d89396d27a337b293132e3f91e34d641e8fd65e7d51205e0fe2ab9eaa5d141e71fe9a798e7af8d8b3d9327a4fe7ac022f9f5007cac24f54029f1422104ab58b7@151.80.18.148:30303"]
+TrustedNodes = ["enode://d89396d27a337b293132e3f91e34d641e8fd65e7d51205e0fe2ab9eaa5d141e71fe9a798e7af8d8b3d9327a4fe7ac022f9f5007cac24f54029f1422104ab58b7@151.80.18.148:30303"]
+EnableMsgEvents = false
+ListenAddr = ":30303"
+
+[Node.HTTPTimeouts]
+ReadTimeout = 30000000000
+WriteTimeout = 30000000000
+IdleTimeout = 120000000000

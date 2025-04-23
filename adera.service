@@ -1,0 +1,43 @@
+[Unit]
+Description=ADERA Private Node (Validator)
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/local/bin/geth \
+        --config /mainnet/datachain/config.toml \
+        --datadir /mainnet/datachain/db \
+        --password /mainnet/datachain/genesis/password.txt \
+        --blspassword /mainnet/datachain/genesis/password.txt \
+        --nodekey /mainnet/datachain/geth/nodekey \
+        --unlock 0xA712bb5db820D4f118Ba6C1698C14331d19707E5 \
+        --miner.etherbase 0xA712bb5db820D4f118Ba6C1698C14331d19707E5 \
+        --rpc.allow-unprotected-txs \
+        --allow-insecure-unlock  \
+        --ws.addr 127.0.0.1 \
+        --ws.port 8546 \
+        --http.addr 127.0.0.1 \
+        --http.port 8545 \
+        --enabletrustprotocol \
+        --http.corsdomain "*" \
+        --networkid 28058 \
+        --syncmode snap \
+        --gcmode full \
+        --cache 18000 \
+        --mine \
+        --vote \
+        --crypto.kzg "gokzg" \
+        --log.compress \
+        --log.file /mainnet/datachain/geth.log \
+        --log.format "terminal" \
+        --log.maxage 5 \
+        --log.maxsize 100 \
+        --log.rotate \
+        --monitor.maliciousvote 
+
+[Install]
+WantedBy=multi-user.target
